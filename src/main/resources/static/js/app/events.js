@@ -1,3 +1,68 @@
+var dragId = 14;
+var start = 0;
+function allowDrop(ev) {
+    ev.preventDefault();
+
+}
+
+function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+
+}
+
+
+
+function drop(ev) {
+    var elementId = ev.srcElement.getAttribute("id");
+    var data = ev.dataTransfer.getData("text");
+    var element = document.getElementById(data);
+    if (elementId != "deleteElement") {
+        ev.preventDefault();
+
+
+
+        element.style.margin = 0;
+        ev.target.appendChild(element);
+
+
+
+        var gameScreen = document.getElementById("exp");
+        var children = gameScreen.childNodes.length + 1;
+
+
+        if (parseInt(element.getAttribute("id")) >= start) {
+            var doc = document.createDocumentFragment();
+            var div = document.createElement("div");
+            div.setAttribute("ondrop", "drop(event)");
+            div.setAttribute("ondragover", "allowDrop(event)");
+            div.setAttribute("id", "div" + (children));
+            div.setAttribute("class", "dropBox gameScreenDropBox");
+
+            doc.appendChild(div);
+            document.getElementById("exp").appendChild(doc);
+
+
+
+
+            updateKeyBoard();
+
+        }
+
+
+
+    }
+    //delete
+    else {
+        console.log("delete");
+        deleteNumberDropBoxElement(element);
+
+
+    }
+}
+
+
+
+
 function deleteNumberDropBoxElement(element){
     var parentNode = element.parentNode;
     parentNode.removeChild(element);
