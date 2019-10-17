@@ -8,5 +8,3 @@ spring.datasource.password="yourpassword"
 spring.jpa.show-sql=true
 
 spring.jpa.properties.hibernate.format_sql=true
-spring.jpa.hibernate.ddl-auto=update
-spring.jpa.properties.hibernate.temp.use_jdbc_metadata_defaults=false
